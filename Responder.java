@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-
+import java.util.Arrays;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response, based on specified input.
@@ -25,6 +25,7 @@ public class Responder
     // Default responses to use if we don't recognise a word.
     private ArrayList<String> defaultResponses;
     private Random randomGenerator;
+    private String lastDefaultResponse;
 
     /**
      * Construct a Responder
@@ -36,28 +37,30 @@ public class Responder
         fillResponseMap();
         fillDefaultResponses();
         randomGenerator = new Random();
+        lastDefaultResponse = "";
+
     }
 
+    
     /**
      * Generate a response from a given set of input words.
      * 
      * @param words  A set of words entered by the user
      * @return       A string that should be displayed as the response
      */
-    public String generateResponse(HashSet<String> words)
+    public String generateResponse(HashSet<String> words) 
     {
-        for (String word : words) {
+        for (String word : words)
+        {
             String response = responseMap.get(word);
-            if(response != null) {
+            if (response != null)
+            {
                 return response;
             }
         }
-        
-        // If we get here, none of the words from the input line was recognized.
-        // In this case we pick one of our default responses (what we say when
-        // we cannot think of anything else to say...)
         return pickDefaultResponse();
     }
+
 
     /**
      * Enter all the known keywords and their associated responses
@@ -137,6 +140,10 @@ public class Responder
                         they simply won't sell... Stubborn people they are. Nothing we can
                         do about it, I'm afraid.
                         """);
+        responseMap.put("cpu",
+                        """
+                        A cpu, otherwise known as the central processing unit, is the brain of the computer.'
+                        """);
     }
 
     /**
@@ -171,6 +178,19 @@ public class Responder
         // Pick a random number for the index in the default response list.
         // The number will be between 0 (inclusive) and the size of the list (exclusive).
         int index = randomGenerator.nextInt(defaultResponses.size());
-        return defaultResponses.get(index);
+        int lastQuestion = index;
+        int newIndex = randomGenerator.nextInt(defaultResponses.size());
+        while(lastQuestion == newIndex)
+        {
+            index = randomGenerator.nextInt(defaultResponses.size());
+        }
+        
+        return defaultResponses.get(newIndex);
     }
+    
+    public HashMap<String, String> getResponseMap()
+    {
+        return responseMap;
+    }
+
 }

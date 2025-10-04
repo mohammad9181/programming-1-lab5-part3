@@ -26,9 +26,23 @@ public class WordCounter
      */
     public void addWords(HashSet<String> input)
     {
-        for(String word : input) {
+        for(String word : input) 
+        {
             int counter = counts.getOrDefault(word, 0);
             counts.put(word, counter + 1);
         }
     }
+    
+    public void printWordCounts()
+    {
+        for (String word : counts.keySet()) {
+            System.out.println(word + ": " + counts.get(word));
+        }
+    }
+    
+    public HashMap<String, Integer> getWordCounts()
+    {
+        return counts;
+    }
+
 }

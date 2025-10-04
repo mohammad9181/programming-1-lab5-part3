@@ -1,4 +1,6 @@
 import java.util.HashSet;
+import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * This class implements a technical support system. It is the top level class 
@@ -19,6 +21,8 @@ public class SupportSystem
     private Responder responder;
     private WordCounter counter;
     
+
+    
     /**
      * Creates a technical support system.
      */
@@ -38,21 +42,35 @@ public class SupportSystem
         boolean finished = false;
 
         printWelcome();
+        
+        while (!finished) 
+        {
+            HashSet<String> words = reader.getInput();
 
-        while(!finished) {
-            HashSet<String> input = reader.getInput();
-
-            if(input.contains("bye")) {
+            if (words.contains("bye")) {
                 finished = true;
-            }
-            else {
-                counter.addWords(input);
-                String response = responder.generateResponse(input);
+            } else {
+                counter.addWords(words);
+                String response = responder.generateResponse(words);
                 System.out.println(response);
             }
         }
+        
         printGoodbye();
+        
+        HashMap<String, Integer> wordCounts = counter.getWordCounts();
+        HashMap<String, String> responseMap = responder.getResponseMap();
+
+        for (String word : wordCounts.keySet()) 
+        {
+            if (!responseMap.containsKey(word)) 
+            {
+                System.out.println(word + ": " + wordCounts.get(word));
+            }
+        }
+
     }
+
 
     /**
      * Print a welcome message to the screen.
@@ -72,5 +90,8 @@ public class SupportSystem
     private void printGoodbye()
     {
         System.out.println("Nice talking to you. Bye...");
+        counter.printWordCounts();
     }
+    
+    
 }

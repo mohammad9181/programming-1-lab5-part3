@@ -1,29 +1,29 @@
-TechSupport - the DodgySoft Technical support system.
+PART 2 2/2:
 
-This project is part of the material for the book
+34: The defirence is that an arraylist is a list of items in order,
+based on an index system. Meanwhile, the HashMap is a scrambled system
+where every value is identified with a key, or ID, that can be type
+int, string, double, ect, unlike an arraylist. However, one thing that
+is similar between the two is the fact that they both are meant to store
+more than one value in a sort of bank where they can be retreived.
 
-   Objects First with Java - A Practical Introduction using BlueJ
-   Seventh edition
-   David J. Barnes and Michael Kölling
+35: Returning a result in the arraylist is randomized, while it isin't
+in the hashmap.
 
-This project is discussed in chapter 6.
+36: There isin't any problem.
 
 
-This project implements a technical support system for customers of the 
-DodgySoft software company. Users can describe their software problems and 
-get advice instantly!
 
-The idea is based on Eliza - a famous program described by Joseph Weizenbaum 
-in 1966. (Do a web search for "Eliza" and "Weizenbaum" if you want to know 
-more about this.)
+PART 3:
 
-In fact, it is much more primitive than Eliza. But that's enough to match the 
-quality of many software companies' technical support advice...  ;-)
+43: putIfAbsent inserts only when the key's value is not there in the map.
 
-To start this program, create a SupportSystem object and execute the "start" 
-method.
+46: 
 
-Then start describing your problem by typing in the terminal window.
+- Accurate? Generally yes, if Javadoc comments are properly written.
+- Complete? Only if all classes and methods are documented.
+- Useful parts: Class summaries, method signatures, parameter descriptions.
+- Not useful: Auto-generated sections without comments.
+- Errors? Missing or incorrect tags, undocumented methods, or poor formatting.
 
-The purpose of this project is to demonstrate and study library classes, such 
-as ArrayList, HashMap, HashSet, and Random.
+
